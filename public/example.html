@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Example Article Sortable</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="src/mozart.js"></script>
+    </head>
+    <body>
+        <section mozart-app>
+            <form mozart-form>
+                <textarea mozart-add-paragraph type="text" data-mozart-type="paragraph"></textarea>
+                <button mozart-submit>Post</button>
+            </form>
+            <ul mozart-sortable style="list-style-type:none;">
+
+            </ul>
+        </section>
+        <script type="text/javascript">
+            mozart.type('paragraph',{
+                widget:{
+                    class:'test-paragraph'
+                },
+                template:(section)=>{
+                    return (
+                        '<div class="paragraph">'+section.content+'</div>'
+                    );
+                }
+            });
+        </script>
+    </body>
+</html>
