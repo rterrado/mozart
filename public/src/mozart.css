@@ -1,3 +1,174 @@
-/**
-* This is where you add all the styling to the widget
+/*
+* This is where you modify the styling of the mozart app panel
 */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+#mozart-app-container {
+    max-width: 1200px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+}
+
+#mozart-app-container .mozart-inputs {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #e2e2e2;
+}
+
+#mozart-left-pane {
+    width: 50%;
+}
+
+#mozart-app-container .button-light {
+    background-color: #f9f9f9;
+    width: max-content;
+    padding: 12px 15px;
+    font-size: 14px;
+    font-family: Helvetica;
+    color: #34495e;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    height: max-content;
+}
+
+#mozart-app-controls > * {
+    margin-left: 5px;
+}
+
+#mozart-app-container .button-light:hover {
+    background-color: #d4d4d4;
+}
+
+#mozart-app-container .with-icon {
+    display: flex;
+    align-items: center;
+}
+
+#mozart-app-container .mozart-icon {
+    height: 20px;
+    margin-left: 5px;
+    margin-top: -3px;
+}
+
+#mozart-app-container .standard-prompt {
+    width: 80%;
+    background-color: #eaeaea;
+    padding: 30px 30px;
+    border-radius: 5px;
+}
+
+#mozart-app-container .mozart-loading-text {
+    font-family: Helvetica;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    color: #b3b3b3;
+}
+
+#mozart-photo-previewer {
+    display:none;
+}
+
+#add-photo-prompt-footer {
+    display: flex;
+    margin-top: 30px;
+}
+
+#add-photo-prompt {
+    display: none;
+}
+
+#add-photo-prompt-footer > .col {
+    width: 50%;
+}
+
+.mozart-add-photo-submit-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.mozart-add-photo-submit {
+    font-family:'Helvetica';
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #34495E;
+    border-style: none;
+    padding: 12px 15px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: max-content;
+    margin-left: 10px;
+}
+
+#mozart-app-container .prompt-title-main {
+    font-family: Helvetica;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #34495e;
+}
+
+.mozart-photo-preview {
+    width: 100%;
+}
+
+#mozart-app-control-option {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#mozart-app-container textarea {
+    width: 100%;
+    height: 150px;
+    font-family: Helvetica;
+    padding: 10px;
+    font-size: 14px;
+    color: #3e3e3e;
+    letter-spacing: 0.1px;
+}
+
+
+
+#mozart-app-container input {
+    width: 100%;
+    border-width: 1px;
+    font-family: Helvetica;
+    padding: 10px;
+    font-size: 14px;
+    color: #3e3e3e;
+    letter-spacing: 0.1px;
+    margin-top: 5px;
+}
+
+#mozart-app-container button {
+    font-family:'Helvetica';
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #34495E;
+    border-style: none;
+    padding: 12px 15px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#mozart-app-container .prompt-title {
+    font-family: Arial;
+    color: #9a9a9a;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+#mozart-app-controls {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 15px;
+}

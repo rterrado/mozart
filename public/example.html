@@ -6,16 +6,43 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="src/mozart.js"></script>
+        <link rel="stylesheet" href="/src/mozart.css">
     </head>
-    <body>
-        <section mozart-app>
-            <form mozart-form>
-                <textarea mozart-add-paragraph type="text" data-mozart-type="paragraph"></textarea>
-                <button mozart-submit>Post</button>
-            </form>
-            <ul mozart-sortable style="list-style-type:none;">
+    <body style="width: 100%; display: flex; justify-content: center; padding-top: 20px;">
+        <section id="mozart-app-container" mozart-app>
+            <div id="mozart-left-pane">
+                <form id="mozart-app-form" mozart-form>
+                    <textarea class="mozart-inputs" mozart-add-paragraph type="text" data-mozart-type="paragraph"></textarea>
+                    <section id="mozart-app-controls">
+                        <button mozart-submit>Post</button>
+                        <div mozart-add-photo-prompt-button data-mozart-type="image" class="button-light with-icon">Add Photo <img class="mozart-icon" src="src/add-photo-icon.svg"></img></div>
+                    </section>
+                    <section id="mozart-app-control-option">
+                        <section id="add-photo-prompt" class="mozart-app-control-prompt standard-prompt">
+                            <div class="prompt-title-main">Add Photo</div>
+                            <div class="prompt-title">Image URL</div>
+                            <input mozart-add-photo-url class="mozart-inputs" type="text" name="" value="">
+                            <br><br>
+                            <div class="prompt-title">Caption</div>
+                            <input class="mozart-inputs" type="text" name="" value="">
+                            <div id="add-photo-prompt-footer">
+                                <div class="col" mozart-add-photo-preview></div>
+                                <div class="col mozart-add-photo-submit-wrapper">
+                                    <div class="mozart-add-photo-submit">Submit</div>
+                                    <div class="button-light">Cancel</div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </form>
+            </div>
+            <div id="preview-pane">
+                <ul mozart-sortable style="list-style-type:none;">
 
-            </ul>
+                </ul>
+            </div>
+
+
         </section>
         <script type="text/javascript">
             mozart.type('paragraph',{

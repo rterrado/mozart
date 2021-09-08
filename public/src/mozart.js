@@ -4,6 +4,8 @@ const mozart = {
             mozart.setSortable();
             let form = document.querySelector('[mozart-form]');
             form.onsubmit = mozart.form.submit.bind(form);
+            $('[mozart-add-photo-url]').change(()=>{mozart.$inputs.photo.preview()});
+            $('[mozart-add-photo-prompt-button]').click(()=>{mozart.$inputs.photo.showPrompt()});
         });
     },
     setSortable:()=>{
@@ -14,10 +16,12 @@ const mozart = {
     form:{
         submit:(e)=>{
             e.preventDefault();
-            let items = new Object;
-            items.paragraphs = new Object;
-            items.paragraphs.content = mozart.$inputs.paragraph.get();
-            items.paragraphs.type = mozart.$inputs.paragraph.getType();
+            let items = {
+                paragraphs: {
+                    type: mozart.$inputs.paragraph.getType(),
+                    content: mozart.$inputs.paragraph.get()
+                }
+            }
             mozart.$submit.present(items);
         }
     },
@@ -50,16 +54,33 @@ const mozart = {
             clear:()=>{
                 document.querySelector('[mozart-add-paragraph]').value = '';
             }
+        },
+        photo:{
+            preview:()=>{
+                let photoURL = document.querySelector('[mozart-add-photo-url]').value;
+                $('[mozart-add-photo-preview]').html('<span id="mozart-photo-loading" class="mozart-loading-text">Loading photo...</span>');
+                $('[mozart-add-photo-preview]').append('<img id="mozart-photo-previewer" class="mozart-photo-preview" src="'+photoURL+'"></img>');
+                setTimeout(function(){
+                    $('#mozart-photo-loading').hide();
+                    $('#mozart-photo-previewer').show();
+                }, 2000);
+            },
+            showPrompt:()=>{
+                $('#add-photo-prompt').show();
+            }
         }
     },
     $submit:{
         present:(items)=>{
             for (const [key, content] of Object.entries(items)) {
+
                 if (!mozart.$types.hasOwnProperty(content.type)) {
                     console.error('mozart.js: undeclared content type: '+content.type);
                     return;
                 }
+
                 let typeName = content.type;
+
                 if (typeof mozart.$types[typeName].template !== 'function') {
                     console.error('mozart.js: template requires to be a function for content type '+content.type);
                     return;
@@ -81,6 +102,7 @@ const mozart = {
                 }
 
 
+
             }
         },
         getType:()=>{
@@ -90,13 +112,34 @@ const mozart = {
             return func(obj);
         },
         push:(templateObj)=>{
+
             if (!templateObj.hasOwnProperty('id')) {
                 let d = new Date();
-                templateObj.id = d.getTime();
+                let e = d.getTime();
+                let r = Math.floor((Math.random() * 1000) + 1);
+                templateObj.id = (e * 1000)+r;
             }
+
+            mozart.$storage.save(templateObj);
+
             $('[mozart-sortable]').append('<li id="'+templateObj.id+'" mozart-sortable-item class="'+templateObj.class+'">'+templateObj.template+'</li>');
             mozart.$inputs.paragraph.clear();
         }
+    },
+    $storage:{
+        save:(templateObj)=>{
+
+            let cleanData = {}
+
+            // Removing unncessary data
+            for (let key of Object.keys(templateObj)) {
+                if ((key!=='template')&&(key!=='class')) {
+                    cleanData[key] = templateObj[key];
+                }
+            }
+            mozart.$storage.data[templateObj.id] = cleanData;
+        },
+        data: []
     }
 }
 
